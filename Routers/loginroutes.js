@@ -3,7 +3,7 @@ import express from 'express'
 
 const signuprouter = express.Router()
 
-signuprouter.post('/login', createSignup)
-signuprouter.get('/login',getSignup)
+signuprouter.post('/signup', createSignup)
+signuprouter.get('/signup',getSignup)
 
 export default signuprouter

@@ -3,7 +3,7 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/signup", CreateLogin);
-router.get("/signup", GetLogin);
+router.post("/login", CreateLogin);
+router.get("/login", GetLogin);
 
 export default router;

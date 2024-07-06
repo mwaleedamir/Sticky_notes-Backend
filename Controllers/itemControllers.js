@@ -5,7 +5,7 @@ export const CreateItem  = async(req,res)=>{
     try {
         console.log(req.body)
         const { description } = req.body;
-        if (!des){
+        if (!description){
             res.status(400).json({error : "description is empty"})
         }
         const newItems  = await Item.create({ description })

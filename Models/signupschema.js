@@ -5,11 +5,16 @@ const SignupSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    signupEmail: {
+    email: {
         type: String,
         required: true,
     },
-    signupPassword: {
+    role: {
+        type: String,
+        enum: ['admin', "user"],
+        default: "user"
+    },
+    password: {
         type: String,
         required: true,
     },

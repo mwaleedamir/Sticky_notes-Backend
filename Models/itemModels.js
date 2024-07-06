@@ -7,5 +7,5 @@ const itemSchema = new mongoose.Schema({
     } 
 }) 
 
-const Items = mongoose.model('Items',itemSchema)
-export default Items
+const Item = mongoose.model('Items',itemSchema)
+export default Item
