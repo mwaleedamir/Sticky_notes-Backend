@@ -1,12 +1,11 @@
 import express from 'express'
-import { CreateItem ,UpdateItems,DeleteItems, GetItems,Getting} from '../Controllers/itemControllers.js'
+import { CreateItem ,UpdateItems,DeleteItems, GetItems} from '../Controllers/itemControllers.js'
 
-const router = express.Router()
+const Itemrouter = express.Router()
 
-router.post('/items',CreateItem)
-router.get('/items',GetItems)
-router.put('/items:id',UpdateItems)
-router.delete('/items:id',DeleteItems)
-router.get('/', Getting)
+Itemrouter.post('/items',CreateItem)
+Itemrouter.get('/items',GetItems)
+Itemrouter.put('/items:id',UpdateItems)
+Itemrouter.delete('/items:id',DeleteItems)
 
-export default router
+export default Itemrouter

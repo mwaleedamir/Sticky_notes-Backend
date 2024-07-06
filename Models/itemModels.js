@@ -1,15 +1,11 @@
 import{mongoose} from 'mongoose'
 
-const itemScheama = new mongoose.Schema({
-    name: {
-        type:String,
-        required :true
-    } ,
-    des :{
+const itemSchema = new mongoose.Schema({
+    description :{
         type: String,
         required :true
     } 
 }) 
 
-const Items = mongoose.model('Items',itemScheama)
+const Items = mongoose.model('Items',itemSchema)
 export default Items
