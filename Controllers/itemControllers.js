@@ -35,8 +35,8 @@ try {
 
 export const DeleteItems = async(req,res)=>{
     try {
-        await Item.findByIdAndDelete(req.param.id)
-        res.status(204).send()
+        const del = await Item.findByIdAndDelete(req.param.id)
+        res.status(200).json(del)
     } catch (err) {
         res.status(400).json({error : err.message})
     }

@@ -41,7 +41,6 @@ export const Login = async(req,res) =>{
         if(!user.password){
             return(res.status(400).json({error : "user password is empty"}))
         }
-
         const checkValidation = await bcryptjs.compare(password , user.password)
         
 
