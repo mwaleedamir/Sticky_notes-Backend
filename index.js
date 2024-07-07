@@ -2,9 +2,10 @@ import express from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import dotenv  from 'dotenv'
+import cookieparser from 'cookie-parser'
 import itemRoutes from './Routers/itemRoutes.js'
-import loginRouter from './Routers/loginroutes.js'
-import signupRouter from './Routers/signuproutes.js'
+import authRouter from './Routers/Auth.js'
+import adminRouter from './Routers/Admin.js'
 import cors from 'cors';
 
 const app = express()
@@ -13,10 +14,12 @@ dotenv.config()
 
 app.use(cors());
 app.use(express.json())
+app.use(cookieparser())
 app.use(bodyParser.json())
-app.use('/',itemRoutes)
-app.use('/',loginRouter)
-app.use('/',signupRouter)
+app.use('/items',itemRoutes)
+app.use('/auth',authRouter)
+app.use('/admin',adminRouter)
+
 
 const port = process.env.PORT 
 
@@ -29,6 +32,6 @@ mongoose.connect(process.env.MONGO_URI)
     });
   })
   .catch((error) => {
-    console.error("Error connecting to DB:", error);
+    console.error("Error connecting to DB:", {mesage : error});
   });
 
