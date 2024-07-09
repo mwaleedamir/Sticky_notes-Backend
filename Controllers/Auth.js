@@ -19,7 +19,7 @@ export const Signup = async (req, res) => {
         const newuser = await AuthModel.create({name,email, password:hashpassword, confirmPassword:hashpassword });
         const newUser =  newuser.save();
 
-        res.status(201).json(newUser);
+        res.status(200).json({message: "account created sucessfully" ,newUser});
     } catch (error) {
         res.status(400).json({message : error.message});
     }
@@ -48,14 +48,14 @@ export const Login = async(req,res) =>{
             return(res.status(400).json({sucess: false , message:"Invalid password"}))
         }
         
-        const token = JWT.sign({_id : user._id}, process.env.TOKEN_SECRET)
+        const token =  JWT.sign({_id : user._id}, process.env.TOKEN_SECRET)
         
         res.cookie('token',token,{
             expires : new Date(Date.now() + 7200000),
             httpOnly : true,
             secure : false,
         })
-        res.status(200).json({sucess: true, message : "Logged in successfully"},user,token)
+        res.status(200).json({sucess: true, message : "Logged in successfully",user,token})
 
     } catch (err) {
         res.status(400).json({error : err.message})

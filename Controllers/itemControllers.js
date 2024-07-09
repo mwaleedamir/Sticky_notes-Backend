@@ -1,16 +1,29 @@
 import Item from "../Models/itemModels.js";
-
+import AuthModel from "../Models/Auth.js"
+import JWT from 'jsonwebtoken'
 
 export const CreateItem  = async(req,res)=>{
     try {
         console.log(req.body)
-        const { description } = req.body;
-        if (!description){
+        const {descriptionName, description} = req.body;
+        if (!description || !descriptionName){
             res.status(400).json({error : "description is empty"})
         }
-        const newItems  = await Item.create({ description })
-        const savedItems = await newItems.save()
-        res.status(201).json(savedItems);
+        const token = req.cookies.token
+
+        if (!token){
+            return res.status(401).json({error : "No token"})
+        }
+        const decoded = JWT.verify(token,process.env.TOKEN_SECRET)
+        const user = await AuthModel.findById(decoded._id)
+        if(user){
+            const newItems  = await Item.create({descriptionName, description})
+            const savedItems = await newItems.save()
+            res.status(201).json(savedItems);
+        }
+        else{
+            res.status(401).json({error : "Not authenticated"})
+        }
     } catch (err) {
         res.status(400).json({error : err.message})
     }

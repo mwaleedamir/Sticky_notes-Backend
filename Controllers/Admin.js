@@ -2,9 +2,10 @@ import AuthModel from '../Models/Auth.js'
 
 export const getuser = async(req,res) =>{
     try {
-        res.send("Welcome to Admin")
+        const user = await AuthModel.find()
+        res.status(200).json({meaasge:"Welcome to Admin",user})
     } catch (error) {
-        
+        res.status(400).json({message: error.message})
     }
 }
 
@@ -19,3 +20,10 @@ export const deleteUser = async(req,res) =>{
     }
 }
 
+export const get = async(req,res) =>{
+    try {
+        res.send("Admin")
+    } catch (error) {
+        
+    }
+}
