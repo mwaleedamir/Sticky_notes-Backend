@@ -5,7 +5,7 @@ import JWT from 'jsonwebtoken'
 export const CreateItem  = async(req,res)=>{
     try {
         console.log(req.body)
-        const {descriptionName, description} = req.body;
+        const {descriptionName, description, userId} = req.body;
         if (!description || !descriptionName){
             res.status(400).json({error : "description is empty"})
         }
@@ -17,7 +17,7 @@ export const CreateItem  = async(req,res)=>{
         const decoded = JWT.verify(token,process.env.TOKEN_SECRET)
         const user = await AuthModel.findById(decoded._id)
         if(user){
-            const newItems  = await Item.create({descriptionName, description})
+            const newItems  = await Item.create({descriptionName, description ,userId})
             const savedItems = await newItems.save()
             res.status(201).json(savedItems);
         }

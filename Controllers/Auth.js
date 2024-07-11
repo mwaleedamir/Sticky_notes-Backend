@@ -35,17 +35,17 @@ export const Login = async(req,res) =>{
         const user = await AuthModel.findOne({email})
 
         if (!user){
-            res.status(400).json({secess : false ,message : "Invalid creadientials"})
+            res.status(400).json({success : false ,message : "Invalid creadientials"})
         }
 
         if(!user.password){
             return(res.status(400).json({error : "user password is empty"}))
         }
         const checkValidation = await bcryptjs.compare(password , user.password)
-        
-
+          
+   
         if(!checkValidation){
-            return(res.status(400).json({sucess: false , message:"Invalid password"}))
+            return(res.status(400).json({success: false , message:"Invalid password"}))
         }
         
         const token =  JWT.sign({_id : user._id}, process.env.TOKEN_SECRET)

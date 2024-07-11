@@ -2,7 +2,7 @@ import AuthModel from '../Models/Auth.js'
 
 export const getuser = async(req,res) =>{
     try {
-        const user = await AuthModel.find()
+        const user = await AuthModel.findOne(email)
         res.status(200).json({meaasge:"Welcome to Admin",user})
     } catch (error) {
         res.status(400).json({message: error.message})
