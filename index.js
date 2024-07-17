@@ -6,6 +6,7 @@ import cookieparser from 'cookie-parser'
 import itemRoutes from './Routers/itemRoutes.js'
 import authRouter from './Routers/Auth.js'
 import adminRouter from './Routers/Admin.js'
+import DynamicRouting from './Routers/DynamicRouting.js'
 import cors from 'cors';
 
 const app = express()
@@ -23,6 +24,7 @@ app.use(bodyParser.json())
 app.use('/items',itemRoutes)
 app.use('/auth',authRouter)
 app.use('/admin',adminRouter)
+app.use('/pages',DynamicRouting)
 
 
 const port = process.env.PORT 

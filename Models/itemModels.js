@@ -1,18 +1,22 @@
 import{mongoose} from 'mongoose'
 
 const itemSchema = new mongoose.Schema({    
-    descriptionName:{
-        type: String,
-        required :true
-    },
-    description :{
-        type: String,
-        required :true
-    },
-    userId :{
-        type:String,
-        required:true
-    }
+  descriptionName :{
+    type: String,
+    required : true
+  },
+  description:{
+  type: Object,
+  required : true
+  },
+  columnId:{
+    type :String,
+    // required :true
+  },
+  userId: {
+    type : String,
+    required : true
+}    
    
 }) 
 
