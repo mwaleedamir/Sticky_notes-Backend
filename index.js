@@ -3,10 +3,11 @@ import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import dotenv  from 'dotenv'
 import cookieparser from 'cookie-parser'
-import itemRoutes from './Routers/itemRoutes.js'
-import authRouter from './Routers/Auth.js'
-import adminRouter from './Routers/Admin.js'
-import DynamicRouting from './Routers/DynamicRouting.js'
+import itemRoutes from './Kanban_Routers/itemRoutes.js'
+import authRouter from './Auth_Routers/AuthRoutes.js'
+import adminRouter from './Auth_Routers/AdminRoutes.js'
+// import DynamicRouting from './Auth_Routers/DynamicRouting.js'
+import ColumnRouter from './Kanban_Routers/ColumnRouters.js'
 import cors from 'cors';
 
 const app = express()
@@ -21,10 +22,11 @@ app.use(cors(
 app.use(express.json())
 app.use(cookieparser())
 app.use(bodyParser.json())
-app.use('/items',itemRoutes)
+app.use('/board',itemRoutes)
 app.use('/auth',authRouter)
 app.use('/admin',adminRouter)
-app.use('/pages',DynamicRouting)
+// app.use('/pages',DynamicRouting)
+app.use('/board',ColumnRouter)
 
 
 const port = process.env.PORT 

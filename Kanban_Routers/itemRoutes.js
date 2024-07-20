@@ -1,5 +1,5 @@
 import express from 'express'
-import { CreateItem ,UpdateItems,DeleteItems, GetItems} from '../Controllers/itemControllers.js'
+import { CreateItem ,UpdateItems,DeleteItems, GetItems} from '../Kanban_Controllers/itemControllers.js'
 
 const Itemrouter = express.Router()
 

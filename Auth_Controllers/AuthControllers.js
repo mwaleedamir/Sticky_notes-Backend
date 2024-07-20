@@ -1,16 +1,16 @@
 import bcryptjs from "bcryptjs"
-import AuthModel from "../Models/Auth.js"
+import AuthModel from "../Auth_Models/AuthSchema.js"
 import JWT from 'jsonwebtoken'
 
 
 export const Signup = async (req, res) => {
     try {
         const {name,email, password, confirmPassword} = req.body;
-        const existUser = await AuthModel.findOne({email})
+        const existUser = await AuthModel.findOne({email}) 
 
         if(existUser){
             return(res.status(400).json({success : false , message : "User already exists"}))
-        }
+        } 
         if(password !== confirmPassword){
             return(res.status(400).json({success : false, message : "Passwords do not match"}))
         }
@@ -51,7 +51,7 @@ export const Login = async(req,res) =>{
         const token =  JWT.sign({_id : user._id}, process.env.TOKEN_SECRET)
         
         res.cookie('token',token,{
-            expires : new Date(Date.now() + 7200000),
+            expires : new Date(Date.now() + 3600000),
             httpOnly : true,
             secure : false,
         })

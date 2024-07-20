@@ -1,4 +1,4 @@
-import DynamicPage from '../Models/DynamicSchema.js'
+import DynamicPage from '../Auth_Models/DynamicSchema.js'
 
 
 export const CreatePage = async(req,res) =>{

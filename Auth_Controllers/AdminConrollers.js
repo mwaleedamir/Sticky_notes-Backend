@@ -1,4 +1,4 @@
-import AuthModel from '../Models/Auth.js'
+import AuthModel from '../Auth_Models/AuthSchema.js'
 
 export const getuser = async(req,res) =>{
     try {
