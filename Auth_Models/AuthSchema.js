@@ -11,13 +11,13 @@ const SignupSchema = new mongoose.Schema({
     }, 
     role: {
         type: String,
-        enum: ['admin', "user"],
+        enum: ['admin', "user"], 
         default: "user"
     },
     password: {
         type: String,
         required: true,
-    },
+    }, 
     confirmPassword: {
         type: String,
         required: true

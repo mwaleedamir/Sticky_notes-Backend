@@ -2,19 +2,19 @@ import mongoose from "mongoose"
 
 const ColumnSchema = mongoose.Schema({
     columnName :{
-        type : String,
-        required : true
+        type : String,    
+        required : true    
+    }, 
+    boardId : {
+        type : mongoose.Schema.Types.ObjectId, 
+        ref: 'BoardSchema'
     },
-    columnId :{
-        type :Number,
-        required : true
-    },
-    userId: {
-        type :mongoose.Schema.Types.ObjectId,
-        ref: 'Signup'
-      },
+    userId: {   
+        type :mongoose.Schema.Types.ObjectId,   
+        ref: 'Signup' 
+      },  
       
 },{timestamps :true})
-
+ 
 const Column = mongoose.model('Column', ColumnSchema)
 export default Column

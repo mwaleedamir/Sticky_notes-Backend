@@ -6,7 +6,7 @@ import cookieparser from 'cookie-parser'
 import itemRoutes from './Kanban_Routers/itemRoutes.js'
 import authRouter from './Auth_Routers/AuthRoutes.js'
 import adminRouter from './Auth_Routers/AdminRoutes.js'
-// import DynamicRouting from './Auth_Routers/DynamicRouting.js'
+import boardRoutes from './Kanban_Routers/boardRoutes.js'
 import ColumnRouter from './Kanban_Routers/ColumnRouters.js'
 import cors from 'cors';
 
@@ -22,11 +22,11 @@ app.use(cors(
 app.use(express.json())
 app.use(cookieparser())
 app.use(bodyParser.json())
-app.use('/board',itemRoutes)
 app.use('/auth',authRouter)
 app.use('/admin',adminRouter)
-// app.use('/pages',DynamicRouting)
+app.use('/board',boardRoutes)
 app.use('/board',ColumnRouter)
+app.use('/board',itemRoutes)
 
 
 const port = process.env.PORT 

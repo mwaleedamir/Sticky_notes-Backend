@@ -1,15 +1,14 @@
-import Item from "../Kanban_Models/itemModels.js";
-
+import Items from "../Kanban_Models/itemSchema.js";
+ 
 
 export const CreateItem  = async(req,res)=>{
     try {
-        // const newItem = await Item.create({descriptionName, userId, items:[] });
         try {
-            const {descriptionName, userId, items:[] } = req.body;
-
-            const newBoard = new Board({ descriptionName, userId, items: [] });
-            await newBoard.save();
-            res.json(newBoard);
+            const {descriptions, columnsId} = req.body
+            const newItems = await Items.create({ descriptions, columnsId});
+            const newitem = await newItems.save();
+            res.status(201).json(newitem);
+            
         } catch (error) {
             res.status(400).json({ message: 'Error adding item' });
         }
@@ -22,12 +21,12 @@ export const CreateItem  = async(req,res)=>{
 export const CreateItemsById = async(req, res) =>{
     try {
         
-            const { boardId } = req.params;
+            const { ItemsId } = req.params;
             const { description } = req.body;
-            const board = await Item.findById(boardId);
-            board.items.push({ description });
-            await board.save();
-            res.json(board);
+            const Items = await Items.findById(ItemsId);
+            Items.items.push({ description });
+            await Items.save();
+            res.json(Items);
           
     } catch (error) {
         res.status(400).json({error : err.message})
@@ -35,9 +34,19 @@ export const CreateItemsById = async(req, res) =>{
 }
 
 export const GetItems = async (req,res) =>{
-    try {
-        const Items = await Item.find(req.params.id)
-        res.status(200).json(Items)
+    try { 
+        const Item = await Items.find()
+        res.status(200).json(Item)
+    } catch (err) {
+        res.status(400).json({error : err.message})
+    }
+}
+
+
+export const GetItemsById = async (req,res) =>{
+    try { 
+        const Item = await Items.findById(req.params.id)
+        res.status(200).json(Item)
     } catch (err) {
         res.status(400).json({error : err.message})
     }
@@ -45,7 +54,7 @@ export const GetItems = async (req,res) =>{
 
 export const UpdateItems =async(req,res) =>{
 try {
-    const update = await Item.findByIdAndUpdate(req.params.id , req.body ,{new:true})
+    const update = await Items.findByIdAndUpdate(req.params.id , req.body ,{new:true})
     res.status(201).json(update)
 } catch (err) {
     res.status(400).json({error : err.message})}
@@ -53,29 +62,9 @@ try {
  
 export const DeleteItems = async(req,res)=>{
     try {
-        const del = await Item.findByIdAndDelete(req.params.id)
+        const del = await Items.findByIdAndDelete(req.params.id)
         res.status(200).json(del)
     } catch (err) {
         res.status(400).json({error : err.message})
     }
 }
-
-
-export const UpdatetBoard = async (req, res) => {
-    try {
-        const { boardId } = req.params;
-        const { itemId, newColumnId, newIndex } = req.body;
-        const board = await Item.findById(boardId);
-        const item = board.items.id(itemId);
-        board.items.pull(itemId);
-        await board.save();
-        const newBoard = await Item.findById(newColumnId);
-        newBoard.items.splice(newIndex, 0, item);
-        await newBoard.save();
-        res.json(newBoard);
-        
-    } catch (error) {
-        res.status(400).json({error : err.message})
-    }
-  }
-

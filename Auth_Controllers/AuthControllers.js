@@ -47,7 +47,7 @@ export const Login = async(req,res) =>{
         if(!checkValidation){
             return(res.status(400).json({success: false , message:"Invalid password"}))
         }
-        
+            
         const token =  JWT.sign({_id : user._id}, process.env.TOKEN_SECRET)
         
         res.cookie('token',token,{
