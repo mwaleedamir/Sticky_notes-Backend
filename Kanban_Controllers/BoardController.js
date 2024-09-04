@@ -24,7 +24,7 @@ export const GetBoardSchema = async (req, res) => {
 
 export const GetBoardSchemaById = async (req, res) => {
   try {
-    const BoardSchema = await BoardSchema.findById(req.params.id);
+    const BoardSchema = await BoardSchema.findById(req.params.id === column.boardId);
     res.send(BoardSchema);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -43,8 +43,8 @@ export const EditBoardSchema = async (req, res) => {
 
 export const DeleteBoardSchema =  async (req, res) => {
   try {
-    await BoardSchema.findByIdAndDelete(req.params.id);
-  res.send({ message: 'BoardSchema deleted' });
+    const del = await BoardSchema.findByIdAndDelete(req.params.id);
+    res.status(200).json(del)
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

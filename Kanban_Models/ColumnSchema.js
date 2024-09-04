@@ -9,10 +9,10 @@ const ColumnSchema = mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId, 
         ref: 'BoardSchema'
     },
-    userId: {   
-        type :mongoose.Schema.Types.ObjectId,   
-        ref: 'Signup' 
-      },  
+    // userId: {   
+    //     type :mongoose.Schema.Types.ObjectId,   
+    //     ref: 'Signup' 
+    //   },  
       
 },{timestamps :true})
  

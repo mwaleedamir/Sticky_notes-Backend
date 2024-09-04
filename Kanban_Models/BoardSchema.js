@@ -5,6 +5,7 @@ const BoardSchema = mongoose.Schema({
      type: String, 
      required: true 
     },
+    
   userId: { 
      type: mongoose.Schema.Types.ObjectId, 
      ref: 'Signup' 
@@ -12,7 +13,7 @@ const BoardSchema = mongoose.Schema({
   createdAt: { 
     type: Date, 
     default: Date.now 
-  } 
+  }  
 })  
 const BoardsSchema = mongoose.model('BoardSchema', BoardSchema);
 export default BoardsSchema;    

@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
+  "presets": ["@babel/preset-env"],
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "babel . --out-dir dist --ignore node_modules"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +27,9 @@
     "nodemon": "^3.1.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.25.6",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
     "nodemon": "^2.0.7"
   }
 }

@@ -6,8 +6,7 @@ import JWT from 'jsonwebtoken'
 export const Signup = async (req, res) => {
     try {
         const {name,email, password, confirmPassword} = req.body;
-        const existUser = await AuthModel.findOne({email}) 
-
+             
         if(existUser){
             return(res.status(400).json({success : false , message : "User already exists"}))
         } 

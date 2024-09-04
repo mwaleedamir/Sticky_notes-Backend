@@ -42,6 +42,24 @@ export const GetItems = async (req,res) =>{
     }
 }
 
+export const updateMove =  async (req, res) => {
+    const { itemId, newColumnId, newIndex } = req.body;
+  
+    try {
+      const item = await Items.findById(itemId);
+      if (!item) return res.status(404).json({ message: 'Item not found' });
+  
+      await Items.updateOne({ _id: itemId }, { $set: { columnsId: newColumnId } });
+  
+      await Items.updateOne({ _id: itemId }, { $set: { index: newIndex } });
+  
+      res.status(200).json({ message: 'Item moved successfully' });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+  
+
 
 export const GetItemsById = async (req,res) =>{
     try { 

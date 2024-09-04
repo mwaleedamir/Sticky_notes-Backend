@@ -3,7 +3,7 @@ import{mongoose} from 'mongoose'
 const itemSchema = new mongoose.Schema({    
   descriptions :{
     type: String,
-    required: true,
+    required: true, 
     trim: true,  
     maxLength: 200 
   },

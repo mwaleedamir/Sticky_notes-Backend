@@ -23,8 +23,8 @@ export const GetColumns = async(req,res) =>{
 
 export const CreateColumn = async(req,res) =>{
     try {
-        const {columnName,userId,boardId} = req.body
-        const column = await Column.create({columnName,userId,boardId})
+        const {columnName,boardId} = req.body
+        const column = await Column.create({columnName,boardId})
         await column.save()
         res.status(201).json(column)
     } catch (err) {
@@ -43,7 +43,7 @@ export const UpdateColumn = async(req,res) =>{
     }
 }
 
- 
+  
 export const DeleteColumn = async(req,res) =>{
     try {
        const column =  await Column.findByIdAndDelete(req.params.id)
